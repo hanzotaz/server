@@ -1,0 +1,71 @@
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    ports:
+      - 9696:9696
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /home/taz/Documents/codebase/server/arr/prowlarr/data:/config
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    ports:
+      - 8989:8989
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /mnt/data/media/Shows:/tv
+      - /home/taz/Documents/codebase/server/arr/sonarr/data:/config
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    ports:
+      - 7878:7878
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /mnt/data/media/Movies/:/movies
+      - /home/taz/Documents/codebase/server/arr/radarr/data:/config
+    restart: unless-stopped
+
+  qbittorent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - /home/taz/Documents/codebase/server/arr/qbittorent/data:/config
+      - /mnt/data/media/:/downloads
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+
+  homarr:
+    image: ghcr.io/ajnart/homarr:latest
+    container_name: homarr
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/taz/Documents/codebase/server/arr/homarr/configs:/app/data/configs
+      - /home/taz/Documents/codebase/server/arr/homarr/icons:/app/public/icons
+      - /home/taz/Documents/codebase/server/arr/homarr/data:/data
+    ports:
+      - '7575:7575'

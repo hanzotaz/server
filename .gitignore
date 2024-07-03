@@ -1,1 +1,9 @@
-./minecraft/data/
+arr/homarr/configs/*
+arr/homarr/data/*
+arr/homarr/icons/*
+arr/prowlarr/data/*
+arr/qbittorent/data/*
+arr/radarr/data/*
+arr/sonarr/data/*
+
+minecraft/data/*
