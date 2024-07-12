@@ -6,8 +6,7 @@ services:
       - "25565:25565"
     environment:
       EULA: "TRUE"
-      OPS: |
-        "3cffafc3-a215-46b5-a6d8-88acb6d3d673"
+      OPS: 3cffafc3-a215-46b5-a6d8-88acb6d3d673
     volumes:
       # attach the relative directory 'data' to the container's /data path
       - ./data:/data

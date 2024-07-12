@@ -7,3 +7,6 @@ arr/radarr/data/*
 arr/sonarr/data/*
 
 minecraft/data/*
+
+jellyfin/config/*
+jellyfin/cache/*
