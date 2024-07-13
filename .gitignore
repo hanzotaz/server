@@ -10,3 +10,6 @@ minecraft/data/*
 
 jellyfin/config/*
 jellyfin/cache/*
+
+
+vaultwarden/vw-data

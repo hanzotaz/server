@@ -5,7 +5,19 @@ services:
     ports:
       - "3926:80"
     restart: always
-      #environment:
-      # - "SIGNUPS_ALLOWED=true"
+    #environment:
+    # - "SIGNUPS_ALLOWED=true"
     volumes:
       - "/opt/vault/vw-data:/data"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vaultwarden.rule=Host(`vault.hanzotaz.dev`)"
+      - "traefik.http.routers.vaultwarden.entrypoints=https"
+      - "traefik.http.routers.vaultwarden.tls.certresolver=letsencrypt"
+      - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
