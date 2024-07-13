@@ -2,8 +2,6 @@ services:
   vaultwarden:
     image: vaultwarden/server:latest-alpine
     container_name: vaultwarden
-    ports:
-      - "3926:80"
     restart: always
     #environment:
     # - "SIGNUPS_ALLOWED=true"
@@ -15,3 +13,5 @@ services:
       - "traefik.http.routers.vaultwarden.entrypoints=https"
       - "traefik.http.routers.vaultwarden.tls.certresolver=letsencrypt"
       - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
+    networks:
+      - proxy

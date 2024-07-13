@@ -13,13 +13,6 @@ services:
       - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
       - "traefik.http.routers.portainer.service=portainer"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
-
-      # Edge
-      - "traefik.http.routers.edge.rule=Host(`edge.hanzotaz.dev`)"
-      - "traefik.http.routers.edge.entrypoints=https"
-      - "traefik.http.services.edge.loadbalancer.server.port=8000"
-      - "traefik.http.routers.edge.service=edge"
-      - "traefik.http.routers.edge.tls.certresolver=letsencrypt"
     networks:
       - proxy
 
